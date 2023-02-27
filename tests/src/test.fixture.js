@@ -13,11 +13,14 @@ async function waitForAppScreen(sim) {
 }
 
 const sim_options_nano = {
-  ...DEFAULT_START_OPTIONS,
   logging: true,
-  X11: true,
-  startDelay: 5000,
-  startText: "is ready",
+  X11: false,
+  startDelay: 15000,
+  startText: "Ready",
+  approveKeyword: "APPROVE",
+  rejectKeyword: "REJECT",
+  custom: "",
+  caseSensitive: false,
 };
 
 const Resolve = require("path").resolve;
@@ -66,7 +69,7 @@ let genericTx = {
   data: null,
 };
 
-const TIMEOUT = 1000000;
+const TIMEOUT = 2000000;
 
 // Generates a serializedTransaction from a rawHexTransaction copy pasted from etherscan.
 function txFromEtherscan(rawTx) {
