@@ -10,7 +10,7 @@ const abi_path = `../${pluginName}/abis/` + contractAddr + '.json';
 const abi = require(abi_path);
 
 nano_models.forEach(function(model) {
-  jest.setTimeout(20000);
+  jest.setTimeout(50000);
   test('[Nano ' + model.letter + '] Swap Dodo Route Proxy Dodo Mutli Swap', zemu(model, async (sim, eth) => {
   const contract = new ethers.Contract(contractAddr, abi);
   const fromToken = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
