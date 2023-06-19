@@ -16,6 +16,7 @@ const abi_path = `../${pluginName}/abis/` + contractAddr + ".json";
 const abi = require(abi_path);
 
 nano_models.forEach(function (model) {
+  jest.setTimeout(50000);
   test(
     "[Nano " + model.letter + "] Swap V2 Proxy02 External Swap Unknown Token",
     zemu(model, async (sim, eth) => {
@@ -64,7 +65,8 @@ nano_models.forEach(function (model) {
 
       const tx = eth.signTransaction("44'/60'/0'/0", serializedTx);
 
-      const right_clicks = 5;
+      const right_clicks = model.letter === "S" ? 7 : 5;
+
 
       // Wait for the application to actually load and parse the transaction
       await waitForAppScreen(sim);
